@@ -1,0 +1,27 @@
+auth-server: http://******:8080
+server:
+ port: 9090
+ servlet:
+  session:
+   cookie:
+    name: sso-client
+spring:
+ application: 
+  name: SSO-CLIENT
+security:
+ basic: 
+  enable: false
+ oauth2:
+  client:
+   clientId: test
+   clientSecret: test-8080
+   accessTokenUri: ${auth-server}/oauth/token
+   userAuthorizationUri: ${auth-server}/oauth/authorize
+   scope: read,write
+   auto-approve-scopes: '.*'
+  resource:
+   userInfoUri: ${auth-server}/user
+logging:
+ level:
+  org.springframework: debug
+
